@@ -15,6 +15,6 @@ mycursor = mydb.cursor()
 #Customers
 mycursor.execute("CREATE TABLE Customers(CustomerID INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255), password VARCHAR(12))")
 #Products
-mycursor.execute("CREATE TABLE Products(ProductID varchar(10) PRIMARY KEY, product_name VARCHAR(255), price FLOAT)")
+mycursor.execute("CREATE TABLE Products(ProductID varchar(10) PRIMARY KEY, product_name VARCHAR(255), price FLOAT, category varchar(25))")
 #Cart
 mycursor.execute("CREATE TABLE Cart(CustomerID INT NOT NULL, ProductID varchar(10) NOT NULL, price FLOAT, quantity INT, FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID) ON DELETE CASCADE, FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE )")
