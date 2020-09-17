@@ -9,9 +9,9 @@ class Admin:
         Product_name=input("Enter the product_name")
         Price=float(input("Enter the price"))
         Category=input("Enter the category of the product")
-        Query="INSERT INTO Products (ProductId, product_name, price, Category)VALUES ('"+ProductID+"','"+Product_name+"','"+str(Price)+"','"+str(Category)+"')"
+        Query="INSERT INTO Products (ProductId, product_name, price, Category)VALUES ('"+ProductID+"','"+Product_name+"',"+str(Price)+",'"+str(Category)+"')"
         result=mycursor.execute(Query)
-        print("Added to Cart")
+        print("Added the product")
 
         
 

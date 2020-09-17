@@ -71,13 +71,21 @@ elif Option ==2:
             print("4. Exit")
             Exit_Code=int(input())
             if Exit_Code==1:
-                
+               Admin.add_products()
+               Exit=0
+               continue
+
                 
             elif Exit_Code==2:
+                Admin.see_carts()
+                Exit=0
+                continue
                 
             elif Exit_Code==3:
+                Admin.see_bills()
+                Exit=0
+                continue
 
             else:
                 print("Exiting from the portal")
-                continue
 
