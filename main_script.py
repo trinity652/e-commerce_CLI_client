@@ -3,8 +3,8 @@ from admin import Admin
 import mysql.connector
 
 print("Welcome to ECart!")
-print("If you are an Admin press 1")
-print("If you are a Customer press 2")
+print("If you are a Customer press 1")
+print("If you are an Admin press 2")
 
 mydb = mysql.connector.connect(
   host="localhost",
