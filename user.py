@@ -45,8 +45,40 @@ class Customer:
         print("Product deleted from the cart")
 
 
-    def buy_products(self):
+    def buy_products(self,CustomerId):
         mycursor = self.mydb.cursor()
+        print("Cart View")
+        self.view_cart()
+        print("Enter 1 to buy all of cart, enter 2 to select product to buy:")
+        s=int(input())
+        if s==1:
+            TotalAmount = mycursor.execute('SELECT SUM(price) FROM cart').fetchall()
+            print(TotalAmount)
+            if TotalAmount>10000:
+                print("Your amount in greater than 10000, you get Rs 500 off")
+                print("Amount to be paid: "+str(TotalAmount-500))
+            else:
+                print("Amount to be paid: "+str(TotalAmount))
+
+        Query="DELETE FROM CART"
+        print("Cart emptied")
+        mycursor.execute(Query)
+
+        elif s==2:
+            X=input("Enter the Product Id from the cart")
+            TotalAmount=mycursor.execute("SELECT price FROM cart where price='"+str(X)+"'").fetchall()
+            if TotalAmount[0][0]>10000:
+                print("Your amount in greater than 10000, you get Rs 500 off")
+                print("Amount to be paid: "+str(TotalAmount[0][0]-500))
+            else:
+                print("Amount to be paid: "+str(TotalAmount[0][0]))
+
+            Query="DELETE FROM CART where productId='"+X+"'"
+            print("Product bought")
+            mycursor.execute(Query) 
+
+
         
+
 
 
