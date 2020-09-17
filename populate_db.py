@@ -1,5 +1,5 @@
 import csv
-import MySQLdb
+import mysql.connector
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -11,27 +11,25 @@ mydb = mysql.connector.connect(
 
 cursor = mydb.cursor()
 
-csv_data = csv.reader(file('CSV_files/admin.csv'))
+csv_data = csv.reader(open('CSV_files/admin.csv'))
 for row in csv_data:
-	cursor.execute('INSERT INTO admin(AdminID,PASSWORD) VALUES(%s, %s)',row)
+	cursor.execute('INSERT INTO admin(AdminID,PASSWORD) VALUES(%s,%s)',row)
 
-csv_data = csv.reader(file('CSV_files/cart.csv'))
+csv_data = csv.reader(open('CSV_files/products.csv'))
 for row in csv_data:
-	cursor.execute('INSERT INTO cart(CustomerID, ProductID, price, quantity) VALUES(%s, %s,%s,%s)',row)
+  cursor.execute('INSERT INTO products(ProductID,product_name,price,Category) VALUES(%s,%s,%s,%s)',row)
 
-csv_data = csv.reader(file('CSV_files/bills.csv'))
+csv_data = csv.reader(open('CSV_files/customers.csv'))
 for row in csv_data:
-	cursor.execute('INSERT INTO bills(CUSTOMERID,AMOUNT,DISCOUNT,NETAMOUNT) VALUES(%s, %s, %s)',row)
+	cursor.execute('INSERT INTO customers(CustomerID,name,address,password) VALUES(%s,%s,%s,%s)',row)
 
-csv_data = csv.reader(file('CSV_files/customers.csv'))
+csv_data = csv.reader(open('CSV_files/cart.csv'))
 for row in csv_data:
-	cursor.execute('INSERT INTO customers(name,address,password) VALUES(%s, %s, %s)',row)
+	cursor.execute('INSERT INTO cart(CustomerID, ProductID, price, quantity) VALUES(%s,%s,%s,%s)',row)
 
-csv_data = csv.reader(file('CSV_files/products.csv'))
+csv_data = csv.reader(open('CSV_files/bills.csv'))
 for row in csv_data:
-	cursor.execute('INSERT INTO products(ProductID,product_name,price,Category) VALUES(%s, %s, %s, %s)',row)
-
+	cursor.execute('INSERT INTO bills(CUSTOMERID,AMOUNT,DISCOUNT,NETAMOUNT) VALUES(%s,%s,%s,%s)',row)
 
 mydb.commit()
-cursor.close()
 print ("CSV has been imported into the database")
