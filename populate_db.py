@@ -21,7 +21,7 @@ for row in csv_data:
 
 csv_data = csv.reader(file('CSV_files/bills.csv'))
 for row in csv_data:
-	cursor.execute('INSERT INTO bills(AMOUNT,DISCOUNT,NETAMOUNT) VALUES(%s, %s, %s)',row)
+	cursor.execute('INSERT INTO bills(CUSTOMERID,AMOUNT,DISCOUNT,NETAMOUNT) VALUES(%s, %s, %s)',row)
 
 csv_data = csv.reader(file('CSV_files/customers.csv'))
 for row in csv_data:
