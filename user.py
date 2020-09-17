@@ -1,9 +1,9 @@
 class Customer:
     def __init__(self, dict_user):
-        self.UserId = dict_user[CustomerId]
-        self.Name=dict_user[name]
-        self.Address=dict_user[address]
-        self.mydb=dict_user[mydb]
+        self.UserId = dict_user['CustomerId']
+        self.Name=dict_user['name']
+        self.Address=dict_user['address']
+        self.mydb=dict_user['mydb']
         
     def view_and_select_categories(self):
         mycursor = self.mydb.cursor()
