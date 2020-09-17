@@ -29,7 +29,7 @@ for row in csv_data:
 
 csv_data = csv.reader(file('CSV_files/products.csv'))
 for row in csv_data:
-	cursor.execute('INSERT INTO products(ProductID,product_name,price,Category) VALUES(%s, %s, %s)',row)
+	cursor.execute('INSERT INTO products(ProductID,product_name,price,Category) VALUES(%s, %s, %s, %s)',row)
 
 
 mydb.commit()
