@@ -20,7 +20,7 @@ class Customer:
 
     def add_to_cart(self, ProductId,CustomerID):
         mycursor = self.mydb.cursor()
-        result = mycursor.execute("SELECT price FROM WHERE ProductID = '"+ProductId+"'")
+        result = mycursor.execute("SELECT price FROM WHERE ProductID = '"+ProductId+"'").fetchall()
         print("Enter quantity:")
         quantity=int(input())
         price=result[0][0]*quantity
