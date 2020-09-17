@@ -9,13 +9,14 @@ class Customer:
         mycursor = self.mydb.cursor()
         mycursor.execute("SELECT DISTINCT CATEGORY FROM products")
         result = mycursor.fetchall()
+        print("CategoryID CategoryName")
         for i in range(len(result)):
             print(str(i+1)+" "+str(result[i][0]))
-        print("Select the category by entering the category ID:")
+        print("Select the category by entering the category ID: ")
         cat=int(input())
         mycursor.execute("SELECT * FROM products where Category='"+str(result[0][cat-1])+"'")
         result=mycursor.fetchall()
-        print(result)
+        print("ProductId ProductName Price Category")
         for i in range(len(result)):
             string=' '.join(list(map(str,result[i])))
             print(string)
