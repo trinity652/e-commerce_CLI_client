@@ -19,18 +19,18 @@ class Admin:
     def see_carts(self):
         mycursor = self.mydb.cursor()
         Query="SELECT * FROM Cart"
-        result=mycursor.execute(Query)
+        result=mycursor.fetchall()
         for i in range(len(result)):
-            string=' '.join(result[i])
+            string=' '.join(list(map(str,result[i])))
             print(string)
 
 
     def see_bills(self):
         mycursor = self.mydb.cursor()
         Query="SELECT * FROM Bills"
-        result=mycursor.execute(Query)
+        result=mycursor.fetchall()
         for i in range(len(result)):
-            string=' '.join(result[i])
+            string=' '.join(list(map(str,result[i])))
             print(string)
 
 
