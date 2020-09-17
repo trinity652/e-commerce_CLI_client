@@ -52,14 +52,21 @@ class Customer:
         print("Enter 1 to buy all of cart, enter 2 to select product to buy:")
         s=int(input())
         TotalAmount=''
+        A=''
+        D=0
+        Na=''
         if s==1:
             TotalAmount = mycursor.execute('SELECT SUM(price) FROM cart').fetchall()
             print(TotalAmount)
+            A=TotalAmount[0][0]
             if TotalAmount[0][0]>10000:
                 print("Your amount in greater than 10000, you get Rs 500 off")
                 print("Amount to be paid: "+str(TotalAmount[0][0]-500))
+                D='500'
+                Na=TotalAmount[0][0]-500
             else:
                 print("Amount to be paid: "+str(TotalAmount[0][0]))
+                Na=TotalAmount[0][0]
 
         Query="DELETE FROM CART"
         print("Cart emptied")
@@ -68,18 +75,22 @@ class Customer:
         elif s==2:
             X=input("Enter the Product Id from the cart")
             TotalAmount=mycursor.execute("SELECT price FROM cart where price='"+str(X)+"'").fetchall()
+            A=TotalAmount[0][0]
             if TotalAmount[0][0]>10000:
                 print("Your amount in greater than 10000, you get Rs 500 off")
                 print("Amount to be paid: "+str(TotalAmount[0][0]-500))
+                D='500'
+                Na=TotalAmount[0][0]-500
             else:
                 print("Amount to be paid: "+str(TotalAmount[0][0]))
+                Na=TotalAmount[0][0]
 
             Query="DELETE FROM CART where productId='"+X+"'"
             print("Product bought")
             mycursor.execute(Query) 
 
-        Query="ADD TO BILLS"
-        
+        Query="INSERT INTO BILLS (CustomerId, Amount, Discount, Netamount)VALUES ('"+CustomerID+"','"+str(A)+"','"+str(D)+"','"+str(Na)+"')"
+        mycursor.execute(Query)
 
 
 
