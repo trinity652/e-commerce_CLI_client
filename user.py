@@ -18,34 +18,34 @@ class Customer:
             print(string)
 
 
-    def add_to_cart(self, ProductId,CustomerID):
+    def add_to_cart(self, ProductId):
         mycursor = self.mydb.cursor()
         result = mycursor.execute("SELECT price FROM WHERE ProductID = '"+ProductId+"'").fetchall()
         print("Enter quantity:")
         quantity=int(input())
         price=result[0][0]*quantity
-        Query="INSERT INTO cart (CustomerId, ProductId, price, quantity)VALUES ('"+CustomerID+"','"+ProductId+"','"+str(price)+"','"+str(quantity)+"')"
+        Query="INSERT INTO cart (CustomerId, ProductId, price, quantity)VALUES ("+self.UserId+",'"+ProductId+"',"+str(price)+","+str(quantity)+")"
         result=mycursor.execute(Query)
         print("Added to Cart")
 
 
-    def view_cart(self,CustomerId):
+    def view_cart(self):
         mycursor = self.mydb.cursor()
-        Query="SELECT * FROM Cart where CustomerId= '"+CustomerId+"'"
+        Query="SELECT * FROM Cart where CustomerId= "+str(self.UserId)
         result=mycursor.execute(Query).fetchall()
         for i in range(len(result)):
             string=' '.join(result[i])
             print(string)
 
 
-    def delete_from_cart(self,ProductId, CustomerId):
+    def delete_from_cart(self,ProductId):
         mycursor = self.mydb.cursor()
-        Query="DELETE FROM Cart WHERE ProductID = '"+ProductId+"' CustomerID='"+CustomerId+"'"
+        Query="DELETE FROM Cart WHERE ProductID = '"+ProductId+"' CustomerID="+str(self.UserId)+""
         result=mycursor.execute(Query)
         print("Product deleted from the cart")
 
 
-    def buy_products(self,CustomerId):
+    def buy_products(self):
         mycursor = self.mydb.cursor()
         print("Cart View")
         self.view_cart()
@@ -89,7 +89,7 @@ class Customer:
             print("Product bought")
             mycursor.execute(Query) 
 
-        Query="INSERT INTO BILLS (CustomerId, Amount, Discount, Netamount)VALUES ('"+CustomerID+"','"+str(A)+"','"+str(D)+"','"+str(Na)+"')"
+        Query="INSERT INTO BILLS (CustomerId, Amount, Discount, Netamount)VALUES ("+str(self.UserId)+","+str(A)+","+str(D)+","+str(Na)+")"
         mycursor.execute(Query)
 
 
