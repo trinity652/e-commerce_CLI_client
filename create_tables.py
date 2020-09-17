@@ -20,3 +20,5 @@ mycursor.execute("CREATE TABLE Products(ProductID varchar(10) PRIMARY KEY, produ
 mycursor.execute("CREATE TABLE Cart(CustomerID INT NOT NULL, ProductID varchar(10) NOT NULL, price FLOAT, quantity INT, FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID) ON DELETE CASCADE, FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE )")
 #Admin
 mycursor.execute("CREATE TABLE Admin(AdminID VARCHAR(12) PRIMARY KEY, PASSWORD varchar(10))")
+#Bills
+mycursor.execute("CREATE TABLE Bills(ID INT AUTO_INCREMENT PRIMARY KEY, CUSTOMERID INT NOT NULL,AMOUNT FLOAT, DISCOUNT INT, NETAMOUNT FLOAT, FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID) ON DELETE CASCADE)")

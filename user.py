@@ -51,14 +51,15 @@ class Customer:
         self.view_cart()
         print("Enter 1 to buy all of cart, enter 2 to select product to buy:")
         s=int(input())
+        TotalAmount=''
         if s==1:
             TotalAmount = mycursor.execute('SELECT SUM(price) FROM cart').fetchall()
             print(TotalAmount)
-            if TotalAmount>10000:
+            if TotalAmount[0][0]>10000:
                 print("Your amount in greater than 10000, you get Rs 500 off")
-                print("Amount to be paid: "+str(TotalAmount-500))
+                print("Amount to be paid: "+str(TotalAmount[0][0]-500))
             else:
-                print("Amount to be paid: "+str(TotalAmount))
+                print("Amount to be paid: "+str(TotalAmount[0][0]))
 
         Query="DELETE FROM CART"
         print("Cart emptied")
@@ -77,7 +78,7 @@ class Customer:
             print("Product bought")
             mycursor.execute(Query) 
 
-
+        Query="ADD TO BILLS"
         
 
 
