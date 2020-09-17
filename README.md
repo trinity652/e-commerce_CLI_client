@@ -27,4 +27,14 @@ python create_tables.py
 ```
 python populate_db.py
 ```
+8. To Run the program, run the main_script.py
+```
+python main_script.py
+```
+
+### The ER-diagram
+
+![ER diagram](EER.png)
+
+
 
