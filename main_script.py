@@ -30,17 +30,17 @@ if Option == 1:
         Cust=Customer(D)
         Exit_Code=0
         while 0<=Exit_Code<3:
-            print("Select one of the following options:")
+            print("Select one of the following options: ")
             print("1. View Product Categories")
             print("2. View Cart")
             print("3. Exit")
             Exit_Code=int(input())
             if Exit_Code==1:
                 Cust.view_and_select_categories()
-                ProductId=input("Enter the product code to add to cart")
+                ProductId=input("Enter the product code to add to cart: ")
                 Cust.add_to_cart(ProductId)
                 Cust.view_cart()
-                x_input=int(input("Enter 0 to go back, Enter 1 to buy products, Enter 3 to exit"))
+                x_input=int(input("Enter 0 to go back, Enter 1 to buy products, Enter 3 to exit: "))
                 if x_input==1:
                     Cust.buy_products()
                 else:
@@ -48,7 +48,7 @@ if Option == 1:
                     continue
             elif Exit_Code==2:
                 Cust.view_cart()
-                x_input=int(input("Enter 0 to go back, Enter 1 to buy products, Enter 3 to exit"))
+                x_input=int(input("Enter 0 to go back, Enter 1 to buy products, Enter 3 to exit: "))
                 if x_input==1:
                     Cust.buy_products()
                 else:

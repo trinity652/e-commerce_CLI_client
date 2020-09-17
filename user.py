@@ -24,21 +24,25 @@ class Customer:
 
     def add_to_cart(self, ProductId):
         mycursor = self.mydb.cursor()
-        result = mycursor.execute("SELECT price FROM WHERE ProductID = '"+ProductId+"'").fetchall()
+        Query="SELECT price FROM products WHERE ProductID ='"+ProductId+"'"
+        mycursor.execute(Query)
+        result=mycursor.fetchall()
+        print(result)
         print("Enter quantity:")
         quantity=int(input())
         price=result[0][0]*quantity
-        Query="INSERT INTO cart (CustomerId, ProductId, price, quantity)VALUES ("+self.UserId+",'"+ProductId+"',"+str(price)+","+str(quantity)+")"
+        Query="INSERT INTO cart (CustomerId, ProductId, price, quantity)VALUES ("+str(self.UserId)+",'"+str(ProductId)+"',"+str(price)+","+str(quantity)+")"
         result=mycursor.execute(Query)
         print("Added to Cart")
 
 
     def view_cart(self):
         mycursor = self.mydb.cursor()
-        Query="SELECT * FROM Cart where CustomerId= "+str(self.UserId)
-        result=mycursor.execute(Query).fetchall()
+        Query="SELECT * FROM Cart where CustomerId='"+str(self.UserId)+"'"
+        mycursor.execute(Query)
+        result=mycursor.fetchall()
         for i in range(len(result)):
-            string=' '.join(result[i])
+            string=' '.join(list(map(str,result[i])))
             print(string)
 
 
@@ -60,7 +64,8 @@ class Customer:
         D=0
         Na=''
         if s==1:
-            TotalAmount = mycursor.execute('SELECT SUM(price) FROM cart').fetchall()
+            mycursor.execute('SELECT SUM(price) FROM cart')
+            TotalAmount=mycursor.fetchall()
             print(TotalAmount)
             A=TotalAmount[0][0]
             if TotalAmount[0][0]>10000:
@@ -78,7 +83,8 @@ class Customer:
 
         elif s==2:
             X=input("Enter the Product Id from the cart")
-            TotalAmount=mycursor.execute("SELECT price FROM cart where price='"+str(X)+"'").fetchall()
+            mycursor.execute("SELECT price FROM cart where price='"+str(X)+"'")
+            TotalAmount=mycursor.fetchall()
             A=TotalAmount[0][0]
             if TotalAmount[0][0]>10000:
                 print("Your amount in greater than 10000, you get Rs 500 off")
