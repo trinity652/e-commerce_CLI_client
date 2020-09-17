@@ -19,5 +19,12 @@ GRANT ALL PRIVILEGES ON ECart.* to 'root1091'@'localhost';
 ```
 pip install requirements.txt
 ```
-
+6. Run to create tables in your database
+```
+python create_tables.py
+```
+7. To populate the tables, the CSV_files, if they need to be changed, change them according to the structures of the tables.
+```
+python populate_db.py
+```
 
