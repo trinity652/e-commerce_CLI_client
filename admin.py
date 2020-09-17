@@ -6,12 +6,16 @@ class Admin:
         self.mydb=dict_user[mydb]
         
     def add_categories(self):
+        mycursor = self.mydb.cursor()
+
 
 
     def add_products(self):
+        mycursor = self.mydb.cursor()
 
 
     def see_carts(self):
+        mycursor = self.mydb.cursor()
 
 
 
