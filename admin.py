@@ -1,7 +1,7 @@
 
 class Admin:
-    def __init__(self, dict_user):
-        self.mydb=dict_user[mydb]
+    def __init__(self, mydb):
+        self.mydb=mydb
         
     def add_products(self):
         mycursor = self.mydb.cursor()
