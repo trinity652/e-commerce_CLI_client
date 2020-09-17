@@ -7,14 +7,17 @@ class Customer:
         
     def view_and_select_categories(self):
         mycursor = self.mydb.cursor()
-        result = mycursor.execute("SELECT DISTINCT CATEGORY FROM products").fetchall()
+        mycursor.execute("SELECT DISTINCT CATEGORY FROM products")
+        result = mycursor.fetchall()
         for i in range(len(result)):
             print(str(i+1)+" "+str(result[i][0]))
         print("Select the category by entering the category ID:")
         cat=int(input())
-        result=mycursor.execute("SELECT * FROM products where Category="+"'"+str(result[cat])+"'").fetchall()
+        mycursor.execute("SELECT * FROM products where Category='"+str(result[0][cat-1])+"'")
+        result=mycursor.fetchall()
+        print(result)
         for i in range(len(result)):
-            string=' '.join(result[i])
+            string=' '.join(list(map(str,result[i])))
             print(string)
 
 
@@ -68,9 +71,9 @@ class Customer:
                 print("Amount to be paid: "+str(TotalAmount[0][0]))
                 Na=TotalAmount[0][0]
 
-        Query="DELETE FROM CART"
-        print("Cart emptied")
-        mycursor.execute(Query)
+            Query="DELETE FROM CART"
+            print("Cart emptied")
+            mycursor.execute(Query)
 
         elif s==2:
             X=input("Enter the Product Id from the cart")

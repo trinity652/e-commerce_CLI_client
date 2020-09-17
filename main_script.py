@@ -20,9 +20,12 @@ if Option == 1:
     print("Enter Username and Password")
     Username=input("Enter the username: ")
     Password=input("Enter the password: ")
-    Query="SELECT * FROM CUSTOMERS WHERE CustomerID='"+str(Username)+"' and Password='"+str(Password)+"'"
-    Customer_details=mycursor.execute(Query).fetchall()
-    if len(Customer_details[0][0])>0:
+    Query="SELECT * FROM customers WHERE name='"+str(Username)+"' and password='"+str(Password)+"'"
+    print(Query)
+    mycursor.execute(Query)
+    Customer_details=mycursor.fetchall()
+    print(Customer_details)
+    if len(Customer_details[0])>0:
         D={'CustomerId':Customer_details[0][0],'name':Customer_details[0][1],'address':Customer_details[0][2],'mydb':mydb}
         Cust=Customer(D)
         Exit_Code=0
@@ -55,7 +58,7 @@ if Option == 1:
                 print("Exiting from the portal")
                 continue
         
-elif Option ==2:
+elif Option==2:
     Username=input("Enter the admin id: ")
     Password=input("Enter the password : ")
     Query="SELECT * FROM Admin WHERE AdminID='"+str(Username)+"' and PASSWORD='"+str(Password)+"'"
