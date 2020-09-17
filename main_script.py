@@ -62,9 +62,10 @@ elif Option==2:
     Username=input("Enter the admin id: ")
     Password=input("Enter the password : ")
     Query="SELECT * FROM Admin WHERE AdminID='"+str(Username)+"' and PASSWORD='"+str(Password)+"'"
-    Admin_details=mycursor.execute(Query).fetchall()
+    mycursor.execute(Query)
+    Admin_details=mycursor.fetchall()
     if len(Admin_details[0][0])>0:
-        Admin=admin(mydb)
+        admin=Admin(mydb)
         Exit_Code=0
         while 0<=Exit_Code<4:
             print("Select one of the following options:")
@@ -74,18 +75,18 @@ elif Option==2:
             print("4. Exit")
             Exit_Code=int(input())
             if Exit_Code==1:
-               Admin.add_products()
+               admin.add_products()
                Exit=0
                continue
 
                 
             elif Exit_Code==2:
-                Admin.see_carts()
+                admin.see_carts()
                 Exit=0
                 continue
                 
             elif Exit_Code==3:
-                Admin.see_bills()
+                admin.see_bills()
                 Exit=0
                 continue
 

@@ -13,12 +13,10 @@ class Admin:
         result=mycursor.execute(Query)
         print("Added the product")
 
-        
-
-
     def see_carts(self):
         mycursor = self.mydb.cursor()
         Query="SELECT * FROM Cart"
+        mycursor.execute(Query)
         result=mycursor.fetchall()
         for i in range(len(result)):
             string=' '.join(list(map(str,result[i])))
@@ -28,6 +26,7 @@ class Admin:
     def see_bills(self):
         mycursor = self.mydb.cursor()
         Query="SELECT * FROM Bills"
+        mycursor.execute(Query)
         result=mycursor.fetchall()
         for i in range(len(result)):
             string=' '.join(list(map(str,result[i])))
